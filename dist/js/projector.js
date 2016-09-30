@@ -336,7 +336,11 @@
 
         exports.prototype.render = function() {
             var div = Overlay.prototype.render.call(this);
-            div.innerHTML = this.options.html;
+            if (typeof this.options.html === 'string') {
+              div.innerHTML = this.options.html;
+            } else {
+              div.appendChild(this.options.html);
+            }
             return div;
         };
 
